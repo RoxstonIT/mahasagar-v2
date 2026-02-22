@@ -69,7 +69,7 @@
         <!-- Mobile Menu Button -->
         <div class="md:hidden flex justify-between items-center py-3 text-white">
             <button class="text-sm font-medium">
-                ☰ Menu
+                ☰ Mahasagar
             </button>
             <span class="text-sm font-medium">
                 Search

@@ -221,6 +221,47 @@
     </div>
 </section>
 
+<!-- Technology Section -->
+<section class="bg-neutral-100 py-12">
+    <div class="max-w-7xl mx-auto px-4">
+
+        <x-section-header title="Technology" />
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <x-cards.featured
+                class="lg:col-span-2"
+                title="AI Adoption Accelerates Across Industries"
+                excerpt="Businesses leverage artificial intelligence for enhanced productivity and innovation."
+            />
+
+            <div class="space-y-6">
+                <x-cards.horizontal
+                    title="Digital Infrastructure Expands Nationwide"
+                    excerpt="New projects aim to improve connectivity and access."
+                />
+
+                <x-cards.horizontal
+                    title="Cybersecurity Initiatives Strengthen Data Protection"
+                    excerpt="Organizations invest in robust security frameworks."
+                />
+
+                <x-cards.horizontal
+                    title="Startups Pioneer Next-Gen Solutions"
+                    excerpt="Entrepreneurs drive technological advancements."
+                />
+
+                <x-cards.horizontal
+                    title="Government Launches Tech Skill Programs"
+                    excerpt="Training initiatives support workforce transformation."
+                />
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
 <!-- Opinion Section -->
 <section class="bg-neutral-900 text-white py-16">
     <div class="max-w-7xl mx-auto px-4">
@@ -262,6 +303,49 @@
                     Tradition and innovation coexist in shaping modern society.
                 </p>
             </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Culture Section -->
+<section class="px-4 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+
+        <x-section-header title="Culture" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <x-cards.vertical
+                title="Heritage Festivals Celebrate Local Traditions"
+                excerpt="Communities across India revive age-old customs through vibrant festivals."
+            />
+
+            <x-cards.vertical
+                title="Contemporary Artists Redefine Indian Art"
+                excerpt="Modern interpretations blend tradition with innovation in galleries nationwide."
+            />
+
+            <x-cards.vertical
+                title="Literature Events Spotlight Emerging Voices"
+                excerpt="Young authors gain recognition at national book fairs and readings."
+            />
+
+            <x-cards.vertical
+                title="Music Scene Thrives with Fusion Genres"
+                excerpt="Artists experiment with blending classical and modern sounds."
+            />
+
+            <x-cards.vertical
+                title="Culinary Heritage Inspires New Trends"
+                excerpt="Chefs reinterpret regional recipes for global audiences."
+            />
+
+            <x-cards.vertical
+                title="Film Industry Explores Social Narratives"
+                excerpt="Directors tackle contemporary issues through creative storytelling."
+            />
 
         </div>
 
