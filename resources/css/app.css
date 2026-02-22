@@ -18,3 +18,114 @@ body {
 h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
 }
+
+.prose blockquote {
+    border-left: 4px solid #ec1e20;
+    padding-left: 1rem;
+    font-style: normal;
+    color: #111827;
+}
+
+.prose blockquote p {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.prose p:first-of-type::first-letter {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+    float: left;
+    line-height: 1;
+    /* color: #ec1e20; */
+    color: #0000;
+}
+
+.prose h2 {
+    margin-top: 2.5rem;
+}
+
+.prose img {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.prose ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.prose a {
+    color: #ec1e20;
+    text-decoration: underline;
+}
+
+/* Pull Quote */
+.prose blockquote[data-type="pull-quote"] {
+    border: none;
+    margin: 3rem 0;
+    padding: 0;
+    text-align: center;
+}
+
+.prose blockquote[data-type="pull-quote"] p {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #111827;
+}
+
+.prose blockquote[data-type="pull-quote"]::before,
+.prose blockquote[data-type="pull-quote"]::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #ec1e20;
+    margin: 1.5rem auto;
+}
+
+/* Inline Image */
+.prose figure {
+    margin: 3rem 0;
+}
+
+.prose figure img {
+    width: 100%;
+    height: auto;
+}
+
+.prose figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-align: center;
+}
+
+/* Highlight Block */
+.prose [data-type="highlight"] {
+    border-left: 4px solid #ec1e20;
+    padding: 1rem 1.25rem;
+    background-color: #f9fafb;
+    margin: 2.5rem 0;
+}
+
+.prose [data-type="highlight"] p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.prose hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 3rem 0;
+}
+
+.prose {
+    line-height: 1.8;
+}
+
+.prose p {
+    margin-top: 1.25rem;
+}

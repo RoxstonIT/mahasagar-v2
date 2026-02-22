@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Article Header -->
-<section class="py-16">
+<section class="pt-16">
     <div class="max-w-4xl mx-auto px-4">
 
         <!-- Category -->
@@ -43,6 +43,10 @@
     </div>
 </section>
 
+<div class="max-w-3xl mx-auto px-4">
+    <div class="border-t border-neutral-200 my-12"></div>
+</div>
+
 <!-- Article Body -->
 <section class="pb-24">
     <div class="max-w-3xl mx-auto px-4">
@@ -76,6 +80,40 @@
             <p>
                 As implementation progresses, analysts will closely monitor economic indicators and regional performance metrics to evaluate the broader impact of these initiatives.
             </p>
+
+        </div>
+
+    </div>
+</section>
+
+<div class="max-w-3xl mx-auto px-4">
+    <div class="border-t border-neutral-200 my-16"></div>
+</div>
+
+<!-- Related Articles -->
+<section class="pb-24">
+    <div class="max-w-5xl mx-auto px-4">
+
+        <h2 class="text-2xl font-bold tracking-tight mb-10">
+            Related Articles
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            <x-cards.vertical
+                title="Urban Infrastructure Projects Gain Momentum"
+                excerpt="Large-scale initiatives aim to modernize key metropolitan regions."
+            />
+
+            <x-cards.vertical
+                title="Public Transport Systems Undergo Major Upgrades"
+                excerpt="Transit networks expand to improve connectivity and efficiency."
+            />
+
+            <x-cards.vertical
+                title="Policy Reforms Target Sustainable Development"
+                excerpt="New frameworks emphasize long-term environmental and economic balance."
+            />
 
         </div>
 
