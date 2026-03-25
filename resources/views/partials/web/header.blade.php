@@ -13,10 +13,13 @@
 
     <!-- Brand Section -->
     <div class="max-w-7xl mx-auto px-4 py-5 text-center">
-        <h1 class="text-3xl font-bold tracking-tight">Mahasagar</h1>
-        <p class="text-xs text-neutral-500 mt-1 uppercase tracking-widest">
-            Voices Beyond The Horizon
-        </p>
+        <a href="/" >
+            <!-- <h1 class="text-3xl font-bold tracking-tight">Mahasagar</h1>
+            <p class="text-xs text-neutral-500 mt-1 uppercase tracking-widest">
+                Voices Beyond The Horizon
+            </p> -->
+            <img src="{{ asset('images/logo/logo.png') }}" alt="Mahasagar Logo" class="mx-auto h-24">
+        </a>
     </div>
 
 </header>

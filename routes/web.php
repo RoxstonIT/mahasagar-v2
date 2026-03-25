@@ -12,3 +12,5 @@ Route::get('/national', function () {
 Route::get('/article', function () {
     return view('web.article');
 });
+
+require __DIR__.'/admin.php';

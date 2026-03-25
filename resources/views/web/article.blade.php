@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.web.app')
 
 @section('title', 'Article')
 
@@ -100,17 +100,17 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Urban Infrastructure Projects Gain Momentum"
                 excerpt="Large-scale initiatives aim to modernize key metropolitan regions."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Public Transport Systems Undergo Major Upgrades"
                 excerpt="Transit networks expand to improve connectivity and efficiency."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Policy Reforms Target Sustainable Development"
                 excerpt="New frameworks emphasize long-term environmental and economic balance."
             />

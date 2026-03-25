@@ -7,9 +7,10 @@
 
             <!-- Brand -->
             <div>
-                <h2 class="text-2xl font-bold tracking-tight mb-4">
+                <!-- <h2 class="text-2xl font-bold tracking-tight mb-4">
                     Mahasagar
-                </h2>
+                </h2> -->
+                <img src="{{ asset('images/logo/logo.png') }}" alt="Mahasagar Logo" class="h-20 mb-4">
                 <p class="text-sm text-neutral-600 leading-relaxed">
                     Independent journalism inspired by Indian depth and global perspective.
                 </p>

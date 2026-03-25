@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.web.app')
 
 @section('title', 'Page Not Found')
 

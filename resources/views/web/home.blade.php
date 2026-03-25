@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.web.app')
 
 @section('title', 'Home')
 
@@ -33,32 +33,32 @@
             <!-- Secondary Stories -->
             <div class="space-y-6 lg:h-[550px] overflow-y-auto">
                 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Technology Innovation Driving Rural Transformation"
                     excerpt="New digital initiatives aim to bridge the urban-rural divide."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Markets React to Global Economic Signals"
                     excerpt="Investors monitor international developments closely."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Cultural Revival Through Contemporary Art"
                     excerpt="Artists reinterpret heritage in modern forms."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Cultural Revival Through Contemporary Art"
                     excerpt="Artists reinterpret heritage in modern forms."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Cultural Revival Through Contemporary Art"
                     excerpt="Artists reinterpret heritage in modern forms."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Cultural Revival Through Contemporary Art"
                     excerpt="Artists reinterpret heritage in modern forms."
                 />
@@ -102,33 +102,33 @@
 <section class="px-4 py-12">
     <div class="max-w-7xl mx-auto px-4">
     
-        <x-section-header title="National" />
+        <x-web.section-header title="National" />
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <x-cards.featured
+            <x-web.cards.featured
                 class="lg:col-span-2"
                 title="Infrastructure Expansion Reshaping Urban Landscapes"
                 excerpt="Major infrastructure projects aim to modernize transport and public services across key cities."
             />
 
             <div class="space-y-6">
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Education Reforms Focus on Digital Inclusion"
                     excerpt="Government initiatives aim to enhance digital access nationwide."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Agricultural Policy Updates Announced"
                     excerpt="Farmers anticipate benefits from revised subsidy structures."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="State Elections See Record Voter Turnout"
                     excerpt="Analysts predict shifting political dynamics."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="State Elections See Record Voter Turnout"
                     excerpt="Analysts predict shifting political dynamics."
                 />
@@ -143,33 +143,33 @@
 <section class="bg-neutral-100 py-12">
     <div class="max-w-7xl mx-auto px-4">
 
-        <x-section-header title="International" />
+        <x-web.section-header title="International" />
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <x-cards.featured
+            <x-web.cards.featured
                 class="lg:col-span-2"
                 title="Global Leaders Convene to Address Climate Policy"
                 excerpt="International cooperation remains central to long-term sustainability efforts."
             />
 
             <div class="space-y-6">
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Trade Agreements Reshape Regional Alliances"
                     excerpt="Economic diplomacy gains renewed momentum."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Energy Markets Respond to Strategic Shifts"
                     excerpt="Oil and gas sectors see notable volatility."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Cultural Diplomacy Strengthens Cross-Border Ties"
                     excerpt="Soft power initiatives expand across continents."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Cultural Diplomacy Strengthens Cross-Border Ties"
                     excerpt="Soft power initiatives expand across continents."
                 />
@@ -184,33 +184,33 @@
 <section class="px-4 py-12">
     <div class="max-w-7xl mx-auto px-4">
 
-        <x-section-header title="Business" />
+        <x-web.section-header title="Business" />
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <x-cards.featured
+            <x-web.cards.featured
                 class="lg:col-span-2"
                 title="Indian Markets Close Higher Amid Global Optimism"
                 excerpt="Strong investor confidence boosts key indices across sectors."
             />
 
             <div class="space-y-6">
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Startup Ecosystem Attracts Foreign Investment"
                     excerpt="Venture capital inflows continue to rise."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Rupee Stability Eases Import Pressures"
                     excerpt="Currency resilience strengthens trade outlook."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Banking Sector Reports Improved Quarterly Results"
                     excerpt="Profit margins reflect steady economic recovery."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Energy Stocks See Renewed Momentum"
                     excerpt="Oil and renewables sectors show upward movement."
                 />
@@ -225,33 +225,33 @@
 <section class="bg-neutral-100 py-12">
     <div class="max-w-7xl mx-auto px-4">
 
-        <x-section-header title="Technology" />
+        <x-web.section-header title="Technology" />
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <x-cards.featured
+            <x-web.cards.featured
                 class="lg:col-span-2"
                 title="AI Adoption Accelerates Across Industries"
                 excerpt="Businesses leverage artificial intelligence for enhanced productivity and innovation."
             />
 
             <div class="space-y-6">
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Digital Infrastructure Expands Nationwide"
                     excerpt="New projects aim to improve connectivity and access."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Cybersecurity Initiatives Strengthen Data Protection"
                     excerpt="Organizations invest in robust security frameworks."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Startups Pioneer Next-Gen Solutions"
                     excerpt="Entrepreneurs drive technological advancements."
                 />
 
-                <x-cards.horizontal
+                <x-web.cards.horizontal
                     title="Government Launches Tech Skill Programs"
                     excerpt="Training initiatives support workforce transformation."
                 />
@@ -313,36 +313,36 @@
 <section class="px-4 py-16">
     <div class="max-w-7xl mx-auto px-4">
 
-        <x-section-header title="Culture" />
+        <x-web.section-header title="Culture" />
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Heritage Festivals Celebrate Local Traditions"
                 excerpt="Communities across India revive age-old customs through vibrant festivals."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Contemporary Artists Redefine Indian Art"
                 excerpt="Modern interpretations blend tradition with innovation in galleries nationwide."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Literature Events Spotlight Emerging Voices"
                 excerpt="Young authors gain recognition at national book fairs and readings."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Music Scene Thrives with Fusion Genres"
                 excerpt="Artists experiment with blending classical and modern sounds."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Culinary Heritage Inspires New Trends"
                 excerpt="Chefs reinterpret regional recipes for global audiences."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Film Industry Explores Social Narratives"
                 excerpt="Directors tackle contemporary issues through creative storytelling."
             />

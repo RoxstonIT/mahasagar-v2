@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.web.app')
 
 @section('title', 'Category')
 
@@ -60,32 +60,32 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Policy Reforms Target Infrastructure Bottlenecks"
                 excerpt="Strategic measures aim to streamline public project execution."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Regional Development Initiatives Gain Momentum"
                 excerpt="States accelerate local economic expansion efforts."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Public Sector Investments See New Funding"
                 excerpt="Budget allocations increase across priority sectors."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Urban Planning Authorities Outline Expansion Plans"
                 excerpt="Major cities prepare for next phase of modernization."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Transport Corridors Improve National Connectivity"
                 excerpt="Improved logistics networks reduce travel time."
             />
 
-            <x-cards.vertical
+            <x-web.cards.vertical
                 title="Energy Sector Expansion Supports Industrial Growth"
                 excerpt="Infrastructure upgrades boost production capacity."
             />

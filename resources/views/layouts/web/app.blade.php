@@ -12,13 +12,13 @@
 </head>
 <body class="bg-neutral-50 text-neutral-900 antialiased">
 
-    @include('partials.header')
+    @include('partials.web.header')
 
     <main>
         @yield('content')
     </main>
 
-    @include('partials.footer')
+    @include('partials.web.footer')
 
 </body>
 </html>
