@@ -45,7 +45,7 @@
                 ['label' => 'ID', 'key' => 'id', 'sortable' => true],
                 ['label' => 'Name', 'key' => 'name', 'sortable' => true],
                 ['label' => 'Slug', 'key' => 'slug', 'sortable' => true],
-                ['label' => 'Actions']
+                ['label' => 'Actions', 'key' => 'actions', 'sortable' => false]
             ]" :sort="request('sort')" :direction="request('direction')">
 
                 @forelse($categories as $category)
@@ -104,9 +104,10 @@
 
             </x-admin.table>
 
-            <div class="mt-4">
-                {{ $categories->links() }}
-            </div>
+        </div>
+        
+        <div class="m-4">
+            {{ $categories->links() }}
         </div>
 
     </div>
