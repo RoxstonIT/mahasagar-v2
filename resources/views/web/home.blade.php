@@ -71,19 +71,40 @@
     </div>
 </section>
 
-<!-- Breaking News Strip -->
+<!-- Breaking News Section -->
 @if($breakingArticles->isNotEmpty())
-    <section class="bg-red-700 text-white mt-12 py-8">
-        <div class="max-w-7xl mx-auto px-4 py-3">
-            <div class="flex flex-col md:flex-row md:items-center gap-3">
-                <span class="font-bold uppercase text-sm tracking-wide">Breaking</span>
-                <div class="flex-1 space-y-2 md:space-y-0 md:flex md:gap-6 text-sm">
-                    @foreach($breakingArticles as $article)
-                        <a href="{{ route('news.show', $article->slug) }}" class="hover:underline">
-                            {{ $article->title }}
+    <section class="bg-neutral-100 mt-12 py-10 border-y border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="w-1.5 h-8 bg-[#ec1e20]"></span>
+                <h2 class="text-3xl font-bold tracking-tight uppercase">
+                    Breaking News
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                @foreach($breakingArticles as $article)
+                    <article class="bg-white border border-neutral-200 p-5">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-[#ec1e20]">
+                            {{ $article->category->name ?? 'Breaking' }}
+                        </span>
+
+                        <h3 class="text-xl font-bold leading-tight mt-3 mb-3">
+                            <a href="{{ route('news.show', $article->slug) }}" class="hover:text-[#ec1e20] transition">
+                                {{ $article->title }}
+                            </a>
+                        </h3>
+
+                        <p class="text-sm text-neutral-600 leading-relaxed mb-5 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
+                            {{ $article->short_article }}
+                        </p>
+
+                        <a href="{{ route('news.show', $article->slug) }}"
+                           class="inline-block text-sm font-semibold text-[#ec1e20] hover:underline">
+                            Read More
                         </a>
-                    @endforeach
-                </div>
+                    </article>
+                @endforeach
             </div>
         </div>
     </section>
