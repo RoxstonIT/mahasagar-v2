@@ -11,9 +11,16 @@ class ArticleController extends Controller
     {
         $article = Article::where('slug', $slug)
             ->where('status', 'approved')
-            ->with('category')
+            ->with('category', 'creator')
             ->firstOrFail();
 
-        return view('web.articles.show', compact('article'));
+        $relatedArticles = Article::where('category_id', $article->category_id)
+            ->where('status', 'approved')
+            ->where('id', '!=', $article->id)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('web.article', compact('article', 'relatedArticles'));
     }
 }

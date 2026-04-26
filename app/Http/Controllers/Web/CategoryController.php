@@ -11,9 +11,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
 
-        $articles = $category->articles()
-            ->where('status', 'approved')
-            ->latest()
+        $articles = $category->approvedArticles()
             ->paginate(12);
 
         return view('web.category', compact('category', 'articles'));

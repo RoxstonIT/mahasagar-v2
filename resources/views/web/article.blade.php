@@ -1,6 +1,6 @@
 @extends('layouts.web.app')
 
-@section('title', 'Article')
+@section('title', $article->meta_title ?? $article->title)
 
 @section('content')
 
@@ -10,34 +10,38 @@
 
         <!-- Category -->
         <span class="text-xs font-semibold uppercase tracking-widest text-red-700">
-            National
+            {{ $article->category->name }}
         </span>
 
         <!-- Headline -->
         <h1 class="text-4xl lg:text-5xl font-bold leading-tight tracking-tight mt-4 mb-6">
-            Infrastructure Expansion Accelerates Across Key States
+            {{ $article->title }}
         </h1>
 
         <!-- Subheadline -->
-        <p class="text-lg text-neutral-600 mb-8">
-            Major development initiatives aim to modernize transport, public services, and regional connectivity nationwide.
-        </p>
+        @if($article->sub_title)
+            <p class="text-lg text-neutral-600 mb-8">
+                {{ $article->sub_title }}
+            </p>
+        @endif
 
         <!-- Meta -->
         <div class="text-sm text-neutral-500">
-            By <span class="font-semibold text-neutral-700">Editorial Desk</span> · {{ now()->format('d M Y') }}
+            By <span class="font-semibold text-neutral-700">{{ $article->meta['author'] ?? $article->creator->name ?? 'Editorial Desk' }}</span> · {{ $article->approved_at?->format('d M Y') ?? $article->created_at->format('d M Y') }}
         </div>
 
         <!-- Hero Image -->
         <div class="mt-12">
-            <img 
-                src="https://placehold.co/1200x700/1f2937/ffffff?text=Article+Hero+Image"
-                alt=""
+            <img
+                src="{{ $article->banner ? asset('storage/'.$article->banner) : 'https://placehold.co/1200x700/1f2937/ffffff?text=Article+Hero+Image' }}"
+                alt="{{ $article->title }}"
                 class="w-full h-[420px] lg:h-[520px] object-cover"
             >
-            <p class="text-xs text-neutral-500 mt-2">
-                Infrastructure projects underway in multiple states aim to boost connectivity and economic growth.
-            </p>
+            @if($article->meta_description)
+                <p class="text-xs text-neutral-500 mt-2">
+                    {{ $article->meta_description }}
+                </p>
+            @endif
         </div>
 
     </div>
@@ -52,35 +56,7 @@
     <div class="max-w-3xl mx-auto px-4">
 
         <div class="prose prose-lg max-w-none">
-
-            <p>
-                Across several states, infrastructure expansion initiatives are reshaping urban and rural landscapes alike. Governments are accelerating investments in transport corridors, logistics networks, and public utilities to stimulate economic growth and regional connectivity.
-            </p>
-
-            <p>
-                Policy experts argue that sustained infrastructure spending plays a crucial role in strengthening long-term economic resilience. Enhanced road networks, improved rail connectivity, and modernized public services contribute directly to productivity gains and investment confidence.
-            </p>
-
-            <h2>Strategic Planning and Regional Focus</h2>
-
-            <p>
-                Strategic regional planning ensures that development projects address local needs while aligning with national objectives. Several high-impact corridors are expected to reduce transit times and enhance trade competitiveness.
-            </p>
-
-            <blockquote>
-                Infrastructure is not merely about construction. It is about creating long-term foundations for national prosperity.
-            </blockquote>
-
-            <p>
-                Industry stakeholders emphasize the importance of transparent execution frameworks and sustainable funding models. Public-private partnerships continue to play a central role in expanding large-scale projects efficiently.
-            </p>
-
-            <h2>Looking Ahead</h2>
-
-            <p>
-                As implementation progresses, analysts will closely monitor economic indicators and regional performance metrics to evaluate the broader impact of these initiatives.
-            </p>
-
+            {!! $article->full_article !!}
         </div>
 
     </div>
@@ -99,22 +75,41 @@
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            @foreach($relatedArticles as $related)
+                <article class="border border-neutral-200 rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition">
+                    <a href="{{ route('news.show', $related->slug) }}" class="block group">
+                        <img
+                            src="{{ $related->banner ? asset('storage/'.$related->banner) : 'https://placehold.co/600x400/1f2937/ffffff?text=Story' }}"
+                            alt="{{ $related->title }}"
+                            class="w-full h-56 object-cover"
+                        />
 
-            <x-web.cards.vertical
-                title="Urban Infrastructure Projects Gain Momentum"
-                excerpt="Large-scale initiatives aim to modernize key metropolitan regions."
-            />
+                        <div class="p-6">
+                            <p class="text-xs uppercase tracking-widest text-red-700 mb-3">
+                                {{ $related->approved_at?->format('F j, Y') ?? $related->created_at->format('F j, Y') }}
+                            </p>
 
-            <x-web.cards.vertical
-                title="Public Transport Systems Undergo Major Upgrades"
-                excerpt="Transit networks expand to improve connectivity and efficiency."
-            />
+                            <h3 class="text-2xl font-semibold text-neutral-900 mb-3 group-hover:text-red-700 transition">
+                                {{ $related->title }}
+                            </h3>
 
-            <x-web.cards.vertical
-                title="Policy Reforms Target Sustainable Development"
-                excerpt="New frameworks emphasize long-term environmental and economic balance."
-            />
+                            @if($related->sub_title)
+                                <p class="text-neutral-700 mb-3">
+                                    {{ $related->sub_title }}
+                                </p>
+                            @endif
 
+                            <p class="text-neutral-600 text-sm leading-relaxed mb-5">
+                                {{ $related->short_article }}
+                            </p>
+
+                            <span class="text-red-700 font-semibold hover:underline">
+                                Read More →
+                            </span>
+                        </div>
+                    </a>
+                </article>
+            @endforeach
         </div>
 
     </div>
