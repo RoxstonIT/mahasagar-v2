@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\HomepageNewsController;
 
 Route::prefix('admin')->group(function () {
 
@@ -14,6 +15,16 @@ Route::prefix('admin')->group(function () {
     Route::middleware(['auth', 'is_admin'])->group(function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+        Route::prefix('homepage-news')->group(function () {
+            Route::get('/', [HomepageNewsController::class, 'index'])
+                ->name('admin.homepage-news.index')
+                ->middleware('permission:manage_homepage_news');
+
+            Route::put('/', [HomepageNewsController::class, 'update'])
+                ->name('admin.homepage-news.update')
+                ->middleware('permission:manage_homepage_news');
+        });
 
         Route::prefix('categories')->group(function () {
 

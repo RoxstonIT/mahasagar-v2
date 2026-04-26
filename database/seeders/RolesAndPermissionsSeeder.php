@@ -26,6 +26,9 @@ class RolesAndPermissionsSeeder extends Seeder
             ['name' => 'approve_disapprove_news_article', 'label' => 'Approve / Disapprove News Article'],
             ['name' => 'edit_news_article_after_approval', 'label' => 'Edit News Article After Approval'],
             ['name' => 'delete_approved_news_article', 'label' => 'Delete Approved News Article'],
+
+            // Homepage News Management Permissions :
+            ['name' => 'manage_homepage_news', 'label' => 'Manage Homepage News'],
         ];
 
         $permissionIds = [];

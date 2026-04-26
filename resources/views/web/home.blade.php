@@ -9,32 +9,49 @@
     <div class="max-w-7xl mx-auto px-4">
 
         @php
-            $allArticles = $categories->pluck('articles')->flatten();
-            $hero = $allArticles->first();
+            $hero = $featuredArticle;
         @endphp
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
             <article class="lg:col-span-2">
-                
-                <img 
-                    src="{{ $hero?->banner ? asset('storage/'.$hero->banner) : 'https://placehold.co/400x300' }}"
-                    class="w-full h-80 lg:h-[390px] object-cover"
-                />
-        
-                <span class="mt-6 block text-xs font-semibold uppercase tracking-widest text-red-700">
-                    {{ $hero?->category->name ?? 'General' }}
-                </span>
+                @if($hero)
+                    <img 
+                        src="{{ $hero->banner ? asset('storage/'.$hero->banner) : 'https://placehold.co/400x300' }}"
+                        class="w-full h-80 lg:h-[390px] object-cover"
+                    />
+            
+                    <span class="mt-6 block text-xs font-semibold uppercase tracking-widest text-red-700">
+                        {{ $hero->category->name ?? 'General' }}
+                    </span>
 
-                <h2 class="text-3xl lg:text-5xl font-bold leading-tight mb-4 tracking-tight">
-                    <a href="{{ route('news.show', $hero->slug) }}">
-                        {{ $hero?->title }}
-                    </a>
-                </h2>
+                    <h2 class="text-3xl lg:text-5xl font-bold leading-tight mb-4 tracking-tight">
+                        <a href="{{ route('news.show', $hero->slug) }}">
+                            {{ $hero->title }}
+                        </a>
+                    </h2>
 
-                <p class="text-neutral-600 text-sm lg:text-base">
-                    {{ $hero?->short_article }}
-                </p>
+                    <p class="text-neutral-600 text-sm lg:text-base">
+                        {{ $hero->short_article }}
+                    </p>
+                @else
+                    <img 
+                        src="https://placehold.co/400x300"
+                        class="w-full h-80 lg:h-[390px] object-cover"
+                    />
+            
+                    <span class="mt-6 block text-xs font-semibold uppercase tracking-widest text-red-700">
+                        General
+                    </span>
+
+                    <h2 class="text-3xl lg:text-5xl font-bold leading-tight mb-4 tracking-tight">
+                        Featured news has not been selected.
+                    </h2>
+
+                    <p class="text-neutral-600 text-sm lg:text-base">
+                        Please check back soon.
+                    </p>
+                @endif
             </article>
 
             <div class="space-y-6 lg:h-[550px] overflow-y-auto">
@@ -55,18 +72,22 @@
 </section>
 
 <!-- Breaking News Strip -->
-<section class="bg-red-700 text-white mt-12 py-8">
-    <div class="max-w-7xl mx-auto px-4 py-3">
-        <div class="flex flex-col md:flex-row md:items-center gap-3">
-            <span class="font-bold uppercase text-sm tracking-wide">Breaking</span>
-            <div class="flex-1 space-y-2 md:space-y-0 md:flex md:gap-6 text-sm">
-                <a href="#" class="hover:underline">Parliament debates key economic reforms amid rising inflation.</a>
-                <a href="#" class="hover:underline">Global markets fluctuate following international policy shifts.</a>
-                <a href="#" class="hover:underline">Major technology summit announces cross-border collaborations.</a>
+@if($breakingArticles->isNotEmpty())
+    <section class="bg-red-700 text-white mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row md:items-center gap-3">
+                <span class="font-bold uppercase text-sm tracking-wide">Breaking</span>
+                <div class="flex-1 space-y-2 md:space-y-0 md:flex md:gap-6 text-sm">
+                    @foreach($breakingArticles as $article)
+                        <a href="{{ route('news.show', $article->slug) }}" class="hover:underline">
+                            {{ $article->title }}
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+@endif
 
 {{-- 🔥 DYNAMIC CATEGORY LOOP --}}
 @foreach($categories as $index => $category)

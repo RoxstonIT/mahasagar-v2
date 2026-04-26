@@ -4,12 +4,27 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use \App\Models\Category;
+use App\Models\HomepageNewsSlot;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
     public function index()
     {
+        $homepageSlots = HomepageNewsSlot::with(['article' => function ($q) {
+            $q->where('status', 'approved')
+                ->with('category');
+        }])
+            ->get()
+            ->keyBy('slot');
+
+        $featuredArticle = $homepageSlots->get(HomepageNewsSlot::FEATURED)?->article;
+
+        $breakingArticles = collect(HomepageNewsSlot::BREAKING_SLOTS)
+            ->map(fn ($slot) => $homepageSlots->get($slot)?->article)
+            ->filter()
+            ->values();
+
         $categories = Category::with(['approvedArticles' => function ($q) {
             $q->latest()
                 // ->take(10)
@@ -27,6 +42,6 @@ class HomepageController extends Controller
         // Shuffle for mixed editorial feel
         $sidebarArticles = $sidebarArticles->shuffle()->take(12);
 
-        return view('web.home', compact('categories', 'sidebarArticles'));
+        return view('web.home', compact('categories', 'sidebarArticles', 'featuredArticle', 'breakingArticles'));
     }
 }

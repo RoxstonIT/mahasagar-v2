@@ -32,6 +32,13 @@ return [
                 'permission' => 'submit_news_article',
             ],
 
+            [
+                'label' => 'Homepage News',
+                'route' => 'admin.homepage-news.index',
+                'icon' => 'newspaper',
+                'permission' => 'manage_homepage_news',
+            ],
+
         ],
     ],
 

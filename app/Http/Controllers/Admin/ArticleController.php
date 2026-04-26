@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Article;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Models\HomepageNewsSlot;
 
 class ArticleController extends Controller
 {
@@ -200,6 +201,10 @@ class ArticleController extends Controller
         }
 
         $article->save();
+
+        if ($article->status !== 'approved') {
+            HomepageNewsSlot::where('article_id', $article->id)->delete();
+        }
 
         return redirect()
             ->route('admin.articles.index')
