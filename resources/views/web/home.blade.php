@@ -38,7 +38,7 @@
             </article>
 
             <div class="space-y-6 lg:h-[550px] overflow-y-auto">
-                @foreach($allArticles->skip(1)->take(6) as $article)
+                @foreach($sidebarArticles->reject(fn($article) => $article->id === $hero?->id)->take(6) as $article)
                     <x-web.cards.horizontal
                         :title="$article->title"
                         :excerpt="$article->short_article"
