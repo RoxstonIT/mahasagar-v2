@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\HomepageNewsController;
+use App\Http\Controllers\Admin\CommentController;
 
 Route::prefix('admin')->group(function () {
 
@@ -24,6 +25,24 @@ Route::prefix('admin')->group(function () {
             Route::put('/', [HomepageNewsController::class, 'update'])
                 ->name('admin.homepage-news.update')
                 ->middleware('permission:manage_homepage_news');
+        });
+
+        Route::prefix('comments')->group(function () {
+            Route::get('/', [CommentController::class, 'index'])
+                ->name('admin.comments.index')
+                ->middleware('permission:moderate_article_comments');
+
+            Route::patch('/{comment}/approve', [CommentController::class, 'approve'])
+                ->name('admin.comments.approve')
+                ->middleware('permission:moderate_article_comments');
+
+            Route::patch('/{comment}/reject', [CommentController::class, 'reject'])
+                ->name('admin.comments.reject')
+                ->middleware('permission:moderate_article_comments');
+
+            Route::delete('/{comment}', [CommentController::class, 'destroy'])
+                ->name('admin.comments.destroy')
+                ->middleware('permission:moderate_article_comments');
         });
 
         Route::prefix('categories')->group(function () {

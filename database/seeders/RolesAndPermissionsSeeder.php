@@ -29,6 +29,9 @@ class RolesAndPermissionsSeeder extends Seeder
 
             // Homepage News Management Permissions :
             ['name' => 'manage_homepage_news', 'label' => 'Manage Homepage News'],
+
+            // Article Comment Moderation Permissions :
+            ['name' => 'moderate_article_comments', 'label' => 'Moderate Article Comments'],
         ];
 
         $permissionIds = [];

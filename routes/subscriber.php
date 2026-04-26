@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Subscriber\AuthController;
+use App\Http\Controllers\Subscriber\CommentController;
 use App\Http\Controllers\Subscriber\DashboardController;
 use App\Http\Controllers\Subscriber\EmailVerificationController;
+use App\Http\Controllers\Subscriber\LikedArticleController;
+use App\Http\Controllers\Subscriber\SavedArticleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -33,6 +36,28 @@ Route::post('/email/verification-notification', [EmailVerificationController::cl
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
-Route::get('/subscriber/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'subscriber', 'verified'])
-    ->name('subscriber.dashboard');
+Route::middleware(['auth', 'subscriber', 'verified'])
+    ->prefix('subscriber')
+    ->name('subscriber.')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
+
+        Route::get('/saved-articles', [SavedArticleController::class, 'index'])
+            ->name('saved-articles.index');
+
+        Route::post('/articles/{article}/save', [SavedArticleController::class, 'toggle'])
+            ->name('articles.save');
+
+        Route::get('/liked-articles', [LikedArticleController::class, 'index'])
+            ->name('liked-articles.index');
+
+        Route::post('/articles/{article}/like', [LikedArticleController::class, 'toggle'])
+            ->name('articles.like');
+
+        Route::get('/comments', [CommentController::class, 'index'])
+            ->name('comments.index');
+
+        Route::post('/articles/{article}/comments', [CommentController::class, 'store'])
+            ->name('articles.comments.store');
+    });

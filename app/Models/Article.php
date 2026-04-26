@@ -55,4 +55,21 @@ class Article extends Model
     {
         return $this->belongsTo(User::class, 'approved_by');
     }
+
+    public function savedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'saved_articles')
+            ->withTimestamps();
+    }
+
+    public function likedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'article_likes')
+            ->withTimestamps();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(ArticleComment::class);
+    }
 }

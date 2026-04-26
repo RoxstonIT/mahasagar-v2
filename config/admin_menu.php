@@ -39,6 +39,13 @@ return [
                 'permission' => 'manage_homepage_news',
             ],
 
+            [
+                'label' => 'Comments',
+                'route' => 'admin.comments.index',
+                'icon' => 'message-square',
+                'permission' => 'moderate_article_comments',
+            ],
+
         ],
     ],
 
