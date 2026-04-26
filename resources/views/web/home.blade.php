@@ -42,7 +42,9 @@
                     <x-web.cards.horizontal
                         :title="$article->title"
                         :excerpt="$article->short_article"
+                        :banner="$article->banner"
                         :url="route('news.show', $article->slug)"
+                        :showReadMore="true"
                     />
                 @endforeach
             </div>
@@ -79,7 +81,7 @@
     <section class="px-4 mt-12 py-8">
         <div class="max-w-7xl mx-auto px-4">
         
-            <x-web.section-header :title="$category->name" />
+            <x-web.section-header :title="$category->name" :categorySlug="$category->slug" />
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
@@ -98,6 +100,7 @@
                             :excerpt="$article->short_article"
                             :banner="$article->banner"
                             :url="route('news.show', $article->slug)"
+                            :showReadMore="true"
                         />
                     @endforeach
                 </div>
@@ -117,7 +120,7 @@
                 <h2 class="text-3xl font-bold tracking-tight">
                     {{ $category->name }}
                 </h2>
-                <a href="#" class="text-sm text-neutral-300 hover:underline">
+                <a href="{{ route('category.show', $category->slug) }}" class="text-sm text-neutral-300 hover:underline">
                     View All
                 </a>
             </div>
@@ -131,9 +134,12 @@
                                 {{ $article->title }}
                             </a>
                         </h3>
-                        <p class="text-neutral-300 text-sm">
+                        <p class="text-neutral-300 text-sm mb-4">
                             {{ $article->short_article }}
                         </p>
+                        <a href="{{ route('news.show', $article->slug) }}" class="text-red-700 text-sm font-semibold hover:underline">
+                            Read More →
+                        </a>
                     </article>
                 @endforeach
 
@@ -148,7 +154,7 @@
     <section class="px-4 mt-12 pb-16 border-b border-neutral-200">
         <div class="max-w-7xl mx-auto px-4">
 
-            <x-web.section-header :title="$category->name" />
+            <x-web.section-header :title="$category->name" :categorySlug="$category->slug" />
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 

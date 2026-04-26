@@ -1,5 +1,6 @@
 @props([
-    'title'
+    'title',
+    'categorySlug' => null
 ])
 
 <div class="flex items-center justify-between mb-6">
@@ -7,7 +8,7 @@
         {{ $title }}
     </h2>
 
-    <a href="#" class="text-sm text-neutral-600 hover:underline">
+    <a href="@if($categorySlug){{ route('category.show', $categorySlug) }}@else#@endif" class="text-sm text-neutral-600 hover:underline">
         View All
     </a>
 </div>
