@@ -14,7 +14,7 @@
     />
 
 
-    <h3 class="text-lg lg:text-2xl font-semibold leading-tight mb-2">
+    <h3 class="text-lg lg:text-2xl font-semibold leading-tight my-6">
         {{ $title }}
     </h3>
 

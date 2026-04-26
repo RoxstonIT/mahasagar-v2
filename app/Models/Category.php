@@ -15,4 +15,17 @@ class Category extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function approvedArticles()
+    {
+        return $this->hasMany(Article::class)
+            ->where('status', 'approved')
+            ->latest();
+    }
+
 }
