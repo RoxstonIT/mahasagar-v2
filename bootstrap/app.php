@@ -6,6 +6,9 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\CheckPermission;
+use App\Http\Middleware\EnsureSubscriber;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -17,9 +20,24 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'is_admin' => IsAdmin::class,
             'permission' => CheckPermission::class,
+            'subscriber' => EnsureSubscriber::class,
+            'verified' => EnsureEmailIsVerified::class,
         ]);
 
-        $middleware->redirectGuestsTo(function () {
+        $middleware->redirectGuestsTo(function (Request $request) {
+            if (
+                $request->is('subscriber') ||
+                $request->is('subscriber/*') ||
+                $request->is('login') ||
+                $request->is('register') ||
+                $request->is('logout') ||
+                $request->is('email/verify') ||
+                $request->is('email/verify/*') ||
+                $request->is('email/verification-notification')
+            ) {
+                return route('subscriber.login');
+            }
+
             return route('admin.login');
         });
     })

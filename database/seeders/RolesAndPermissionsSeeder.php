@@ -48,5 +48,10 @@ class RolesAndPermissionsSeeder extends Seeder
         );
 
         $role->permissions()->sync($permissionIds);
+
+        Role::firstOrCreate(
+            ['name' => 'reader'],
+            ['label' => 'Reader']
+        );
     }
 }

@@ -13,4 +13,5 @@ Route::get('/category/{slug}', [CategoryController::class, 'show'])
 Route::get('/news/{slug}', [ArticleController::class, 'show'])
     ->name('news.show');
 
+require __DIR__.'/subscriber.php';
 require __DIR__.'/admin.php';

@@ -5,9 +5,38 @@
         <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
             <span>{{ now()->format('l, d M Y') }}</span>
             <div class="flex items-center gap-4">
-                <a href="#" class="hover:underline">Login / Register</a>
-                <a href="javascript:;" class="hover:underline"> | </a>
-                <a href="#" class="font-semibold text-red-700 hover:underline">Subscribe</a>
+                @guest
+                    <a href="{{ route('subscriber.login') }}" class="hover:underline">Login</a>
+                    <span>|</span>
+                    <a href="{{ route('subscriber.register') }}" class="hover:underline">Register</a>
+                    <a href="{{ route('subscriber.register') }}" class="font-semibold text-red-700 hover:underline">Subscribe</a>
+                @else
+                    @php $headerUser = auth()->user(); @endphp
+
+                    @if($headerUser->hasRole('superadmin'))
+                        <a href="{{ route('admin.dashboard') }}" class="font-semibold text-red-700 hover:underline">
+                            Admin Dashboard
+                        </a>
+                        <span>|</span>
+                    @elseif($headerUser->hasRole('reader') && !$headerUser->hasVerifiedEmail())
+                        <a href="{{ route('verification.notice') }}" class="font-semibold text-red-700 hover:underline">
+                            Verify Email
+                        </a>
+                        <span>|</span>
+                    @elseif($headerUser->hasRole('reader') && $headerUser->hasVerifiedEmail())
+                        <a href="{{ route('subscriber.dashboard') }}" class="font-semibold text-red-700 hover:underline">
+                            Subscriber Dashboard
+                        </a>
+                        <span>|</span>
+                    @endif
+
+                    <form method="POST" action="{{ route('subscriber.logout') }}">
+                        @csrf
+                        <button type="submit" class="hover:underline">
+                            Logout
+                        </button>
+                    </form>
+                @endguest
             </div>
         </div>
     </div>
