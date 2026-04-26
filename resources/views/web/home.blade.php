@@ -87,6 +87,8 @@
                     class="lg:col-span-2"
                     :title="$articles->first()?->title"
                     :excerpt="$articles->first()?->short_article"
+                    :banner="$articles->first()?->banner"
+                    :url="route('news.show', $articles->first()->slug)"
                 />
 
                 <div class="space-y-6 mt">
@@ -94,6 +96,8 @@
                         <x-web.cards.horizontal
                             :title="$article->title"
                             :excerpt="$article->short_article"
+                            :banner="$article->banner"
+                            :url="route('news.show', $article->slug)"
                         />
                     @endforeach
                 </div>
@@ -123,7 +127,9 @@
                 @foreach($articles->take(3) as $article)
                     <article>
                         <h3 class="text-2xl font-bold mb-4 leading-tight">
-                            {{ $article->title }}
+                            <a href="{{ route('news.show', $article->slug) }}" class="hover:underline">
+                                {{ $article->title }}
+                            </a>
                         </h3>
                         <p class="text-neutral-300 text-sm">
                             {{ $article->short_article }}
@@ -150,6 +156,8 @@
                     <x-web.cards.vertical
                         :title="$article->title"
                         :excerpt="$article->short_article"
+                        :banner="$article->banner"
+                        :link="route('news.show', $article->slug)"
                     />
                 @endforeach
 
