@@ -42,7 +42,10 @@
             
             @foreach($navCategories as $category)
             
-                @php $isActive = request()->routeIs('category.show')  && request()->route('slug') === $category->slug; @endphp
+                @php 
+                    $isActive = (request()->routeIs('category.show')  && request()->route('slug') === $category->slug) ||
+                                (request()->routeIs('news.show') && isset($article) && $article->category_id === $category->id);
+                @endphp
                 
                 <a href="{{ route('category.show', $category->slug) }}" class="relative group">
                     
