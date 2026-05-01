@@ -5,6 +5,7 @@ use App\Http\Controllers\Subscriber\CommentController;
 use App\Http\Controllers\Subscriber\DashboardController;
 use App\Http\Controllers\Subscriber\EmailVerificationController;
 use App\Http\Controllers\Subscriber\LikedArticleController;
+use App\Http\Controllers\Subscriber\ProfileController;
 use App\Http\Controllers\Subscriber\SavedArticleController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,4 +61,26 @@ Route::middleware(['auth', 'subscriber', 'verified'])
 
         Route::post('/articles/{article}/comments', [CommentController::class, 'store'])
             ->name('articles.comments.store');
+    });
+
+Route::middleware(['auth', 'subscriber'])
+    ->prefix('subscriber')
+    ->name('subscriber.')
+    ->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])
+            ->name('profile.edit');
+    });
+
+Route::middleware(['auth', 'subscriber', 'verified'])
+    ->prefix('subscriber')
+    ->name('subscriber.')
+    ->group(function () {
+        Route::put('/profile', [ProfileController::class, 'update'])
+            ->name('profile.update');
+
+        Route::post('/profile/photo', [ProfileController::class, 'updatePhoto'])
+            ->name('profile.photo.update');
+
+        Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
+            ->name('profile.password.update');
     });

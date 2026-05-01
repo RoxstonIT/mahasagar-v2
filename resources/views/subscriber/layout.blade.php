@@ -46,9 +46,10 @@
                             My Comments
                         </a>
 
-                        <span class="block px-3 py-2 border-l-4 border-transparent text-neutral-400">
+                        <a href="{{ route('subscriber.profile.edit') }}"
+                           class="block px-3 py-2 border-l-4 {{ request()->routeIs('subscriber.profile.*') ? 'border-[#ec1e20] bg-neutral-100 font-semibold' : 'border-transparent hover:bg-neutral-100' }}">
                             Profile
-                        </span>
+                        </a>
 
                         <form method="POST" action="{{ route('subscriber.logout') }}" class="pt-3">
                             @csrf
