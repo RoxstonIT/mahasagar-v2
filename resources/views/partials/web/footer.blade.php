@@ -54,16 +54,75 @@
                     Get curated insights delivered directly to your inbox.
                 </p>
 
-                <div class="flex">
+                <form method="POST" action="{{ route('newsletter.subscribe') }}" class="flex">
+                    @csrf
                     <input 
                         type="email"
+                        name="newsletter_email"
+                        value="{{ old('newsletter_email') }}"
                         placeholder="Your email"
                         class="flex-1 border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:border-red-700"
+                        required
                     >
-                    <button class="bg-red-700 text-white px-4 text-sm font-semibold">
+                    <button type="submit" class="bg-red-700 text-white px-4 text-sm font-semibold">
                         Subscribe
                     </button>
-                </div>
+                </form>
+
+                @if(session('newsletter_success'))
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: @json(session('newsletter_success')),
+                                showConfirmButton: false,
+                                timer: 5000,
+                                timerProgressBar: true
+                            });
+                        });
+                    </script>
+                @endif
+
+                @if(session('newsletter_status'))
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Newsletter',
+                                text: @json(session('newsletter_status')),
+                                confirmButtonColor: '#ec1e20'
+                            });
+                        });
+                    </script>
+                @endif
+
+                @if(session('newsletter_error'))
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Newsletter',
+                                text: @json(session('newsletter_error')),
+                                confirmButtonColor: '#ec1e20'
+                            });
+                        });
+                    </script>
+                @endif
+
+                @error('newsletter_email')
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Email',
+                                text: @json($message),
+                                confirmButtonColor: '#ec1e20'
+                            });
+                        });
+                    </script>
+                @enderror
             </div>
 
         </div>

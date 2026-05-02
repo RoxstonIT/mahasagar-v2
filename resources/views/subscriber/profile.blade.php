@@ -59,6 +59,30 @@
         @endif
     </div>
 
+    <div class="bg-white border border-neutral-200 p-6">
+        <h2 class="text-2xl font-bold tracking-tight mb-4">Newsletter</h2>
+
+        @if(auth()->user()->hasVerifiedEmail())
+            @php $isNewsletterSubscribed = $newsletterSubscriber?->verified_at !== null; @endphp
+
+            <p class="text-sm text-neutral-700 mb-4">
+                {{ $isNewsletterSubscribed ? 'You are subscribed to the Mahasagar newsletter.' : 'Subscribe to receive curated Mahasagar updates at your verified account email.' }}
+            </p>
+
+            <form method="POST" action="{{ route('subscriber.newsletter.toggle') }}">
+                @csrf
+                <button type="submit"
+                        class="px-4 py-2 text-sm font-semibold {{ $isNewsletterSubscribed ? 'border border-neutral-300 text-neutral-800 hover:border-[#ec1e20] hover:text-[#ec1e20]' : 'bg-[#ec1e20] text-white hover:opacity-90' }}">
+                    {{ $isNewsletterSubscribed ? 'Unsubscribe from Newsletter' : 'Subscribe to Newsletter' }}
+                </button>
+            </form>
+        @else
+            <p class="text-sm text-neutral-600">
+                Verify your account email to manage newsletter subscription from your profile.
+            </p>
+        @endif
+    </div>
+
     <div class="grid grid-cols-1 xl:grid-cols-[260px_1fr] gap-8">
         <div class="bg-white border border-neutral-200 p-6 h-fit">
             <h2 class="text-2xl font-bold tracking-tight mb-5">Profile Photo</h2>

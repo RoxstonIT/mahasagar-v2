@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Subscriber;
 
 use App\Http\Controllers\Controller;
+use App\Models\NewsletterSubscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
@@ -15,7 +17,10 @@ class ProfileController extends Controller
             ->subscriberProfile()
             ->firstOrCreate([]);
 
-        return view('subscriber.profile', compact('profile'));
+        $newsletterSubscriber = NewsletterSubscriber::where('email', Str::lower($request->user()->email))
+            ->first();
+
+        return view('subscriber.profile', compact('profile', 'newsletterSubscriber'));
     }
 
     public function update(Request $request)

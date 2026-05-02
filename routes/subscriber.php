@@ -5,6 +5,7 @@ use App\Http\Controllers\Subscriber\CommentController;
 use App\Http\Controllers\Subscriber\DashboardController;
 use App\Http\Controllers\Subscriber\EmailVerificationController;
 use App\Http\Controllers\Subscriber\LikedArticleController;
+use App\Http\Controllers\Subscriber\NewsletterController;
 use App\Http\Controllers\Subscriber\ProfileController;
 use App\Http\Controllers\Subscriber\SavedArticleController;
 use Illuminate\Support\Facades\Route;
@@ -83,4 +84,7 @@ Route::middleware(['auth', 'subscriber', 'verified'])
 
         Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
             ->name('profile.password.update');
+
+        Route::post('/newsletter', [NewsletterController::class, 'toggle'])
+            ->name('newsletter.toggle');
     });
