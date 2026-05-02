@@ -1,12 +1,16 @@
 console.log('APP JS LOADED');
 
 import './bootstrap';
+import Alpine from 'alpinejs';
 import { Editor } from '@tiptap/core'
 import { Extension } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
 import Youtube from '@tiptap/extension-youtube'
 import { Node } from '@tiptap/core'
+
+window.Alpine = Alpine;
+Alpine.start();
 
 // SweetAlert2 global configuration
 import Swal from 'sweetalert2';

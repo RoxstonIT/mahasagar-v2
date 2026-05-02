@@ -53,14 +53,18 @@
 </header>
 
 <!-- Navigation -->
-<nav class="sticky top-0 bg-red-700 text-white z-50 shadow-md">
+<nav
+    x-data="{ mobileMenuOpen: false }"
+    x-on:keydown.escape.window="mobileMenuOpen = false"
+    class="sticky top-0 bg-red-700 text-white z-50 shadow-md"
+>
 
-    <div class="max-w-7xl mx-auto px-4">
+    <div class="max-w-7xl mx-auto px-4" x-on:click.outside="mobileMenuOpen = false">
+
+        @php $isHomePage = request()->routeIs('home'); @endphp
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex justify-center gap-10 py-3 text-sm font-semibold tracking-wide">
-            
-            @php $isHomePage = request()->routeIs('home'); @endphp
 
             <a href="/" class="relative group">
                 <span class=" transition duration-200 {{ $isHomePage ? 'text-black font-bold' : 'group-hover:text-black' }} ">
@@ -92,12 +96,52 @@
 
         <!-- Mobile Menu Button -->
         <div class="md:hidden flex justify-between items-center py-3 text-white">
-            <button class="text-sm font-medium">
+            <button
+                type="button"
+                class="text-sm font-medium"
+                aria-controls="mobile-navigation"
+                x-bind:aria-expanded="mobileMenuOpen.toString()"
+                x-on:click="mobileMenuOpen = !mobileMenuOpen"
+            >
                 ☰ Mahasagar
             </button>
             <span class="text-sm font-medium">
                 Search
             </span>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+            id="mobile-navigation"
+            x-cloak
+            x-show="mobileMenuOpen"
+            x-transition
+            class="md:hidden border-t border-red-800 py-2 text-sm font-semibold tracking-wide"
+        >
+            <a
+                href="/"
+                x-on:click="mobileMenuOpen = false"
+                class="block py-3 {{ $isHomePage ? 'text-black font-bold' : 'hover:text-black' }}"
+            >
+                Home
+            </a>
+
+            @foreach($navCategories as $category)
+
+                @php
+                    $isActive = (request()->routeIs('category.show')  && request()->route('slug') === $category->slug) ||
+                                (request()->routeIs('news.show') && isset($article) && $article->category_id === $category->id);
+                @endphp
+
+                <a
+                    href="{{ route('category.show', $category->slug) }}"
+                    x-on:click="mobileMenuOpen = false"
+                    class="block py-3 {{ $isActive ? 'text-black font-bold' : 'hover:text-black' }}"
+                >
+                    {{ $category->name }}
+                </a>
+
+            @endforeach
         </div>
 
     </div>

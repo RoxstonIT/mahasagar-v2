@@ -11,6 +11,10 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+[x-cloak] {
+    display: none !important;
+}
+
 body {
     font-family: 'Inter', sans-serif;
 }
